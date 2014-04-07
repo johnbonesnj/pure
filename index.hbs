@@ -1,36 +1,61 @@
 {{!< default}}
 
-{{! The big featured header on the homepage, with the site logo and description }}
-<header class="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
-    <div class="vertical">
-        <div class="site-head-content inner">
-            {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
-            <h1 class="blog-title">{{@blog.title}}</h1>
-            <h2 class="blog-description">{{@blog.description}}</h2>
-        </div>
-    </div>
-</header>
-
+{{! The big featured sidebar on the homepage, with the site logo and description }}
+<div class="sidebar pure-u-1 pure-u-med-1-4">
+  <div class="header">
+    <hgroup>
+      {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
+      <h1 class="brand-title">{{@blog.title}}</h1>
+      <h2 class="brand-tagline">{{@blog.description}}</h2>
+    </hgroup>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="#" class="pure-button">Test</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="pure-button">Ready</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
 {{! The main content area on the homepage }}
-<main class="content" role="main">
-
-    {{! Each post will be output using this markup }}
-    {{#foreach posts}}
-
-    <article class="{{post_class}}">
+<div class="content pure-u-1 pure-u-med-3-4">
+  <div>
+    {{!-- A wrapper for all the blog posts --}}
+    <div class="posts">
+      <h1 class="content-subhead">Recent Posts</h1>
+      {{#foreach posts}}
+      <section class="post {{post_class}}">
         <header class="post-header">
-            <span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time> {{tags prefix="on "}}</span>
-            <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
-
+          <img class="post-avatar" alt="PLaceholder&#x27;s avatar" height="48" width="48" src="http://lorempixel.com/g/48/48/people/">
+          <h2 class="post-title">{{{title}}}</h2>
+          <p class="post-meta">
+            By <a href="#" class="post-author">{{author}}</a> on <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time> under {{tags}}
+          </p>
         </header>
-        <section class="post-excerpt">
-            <p>{{excerpt}}&hellip;</p>
-        </section>
-    </article>
+        <div class="post-description">
+          <p>
+            {{excerpt}}&hellip;
+          </p>
+        </div>
+        <p class="post-meta"><a href="{{url}}">Continue Reading </a></p>
 
-    {{/foreach}}
-
-    {{!! After all the posts, we have the previous/next pagination links }}
+      </section>
+      {{/foreach}}
+    </div>
     {{pagination}}
+    <div class="footer">
+                <div class="pure-menu pure-menu-horizontal pure-menu-open">
+                    <ul>
+                        <li><a href="http://purecss.io/">About</a></li>
+                        <li><a href="http://twitter.com/yuilibrary/">Twitter</a></li>
+                        <li><a href="http://github.com/yui/pure/">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+  </div>
+</div>
 
-</main>
+
