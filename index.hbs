@@ -26,23 +26,82 @@
     {{!-- A wrapper for all the blog posts --}}
     <div class="posts">
       <h1 class="content-subhead">Recent Posts</h1>
-      {{#foreach posts}}
-      <section class="post {{post_class}}">
-        <header class="post-header">
-          <img class="post-avatar" alt="PLaceholder&#x27;s avatar" height="48" width="48" src="http://lorempixel.com/g/48/48/people/">
-          <h2 class="post-title">{{{title}}}</h2>
-          <p class="post-meta">
-            By <a href="#" class="post-author">{{author}}</a> on <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time> under {{tags}}
-          </p>
-        </header>
-        <div class="post-description">
-          <p>
-            {{excerpt}}&hellip;
-          </p>
-        </div>
-        <p class="post-meta"><a href="{{url}}">Continue Reading </a></p>
 
-      </section>
+
+      {{#foreach posts}}
+      {{#has tag="code"}}
+        <section class="post {{post_class}}">
+          <header class="post-header">
+            <img class="post-avatar" alt="PLaceholder&#x27;s avatar" height="48" width="48" src="http://lorempixel.com/g/48/48/people/">
+            <h2 class="post-title">{{{title}}}</h2>
+            <p class="post-meta">
+              By <a href="#" class="post-author">{{author}}</a> on <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time>
+              {{#if tags}}
+               under
+                {{#foreach tags}}
+                  <a class="post-tag {{slug}}" href="/tag/{{slug}}">{{name}}</a>
+                {{/foreach}}
+              {{/if}}
+            </p>
+          </header>
+          <div class="post-description">
+            <p>
+              {{excerpt words="13"}}&hellip;
+            </p>
+          </div>
+          <p class="post-meta"><a href="{{url}}">Continue Reading </a></p>
+
+        </section>
+      {{else}}
+      {{/has}}
+      {{#has tag="image"}}
+        <section class="post {{post_class}}">
+          <header class="post-header">
+            <img class="post-avatar" alt="PLaceholder&#x27;s avatar" height="48" width="48" src="http://lorempixel.com/g/48/48/people/">
+            <h2 class="post-title">{{{title}}}</h2>
+            <p class="post-meta">
+              By <a href="#" class="post-author">{{author}}</a> on <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time>
+              {{#if tags}}
+               under
+                {{#foreach tags}}
+                  <a class="post-tag {{slug}}" href="/tag/{{slug}}">{{name}}</a>
+                {{/foreach}}
+              {{/if}}
+            </p>
+          </header>
+          <div class="post-description">
+
+              {{content words="0"}}
+
+          </div>
+          <p class="post-meta"><a href="{{url}}">Continue Reading </a></p>
+        </section>
+      {{else}}
+        {{^has tag="image, code"}}
+        <section class="post {{post_class}}">
+          <header class="post-header">
+            <img class="post-avatar" alt="PLaceholder&#x27;s avatar" height="48" width="48" src="http://lorempixel.com/g/48/48/people/">
+            <h2 class="post-title">{{{title}}}</h2>
+            <p class="post-meta">
+              By <a href="#" class="post-author">{{author}}</a> on <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time>
+              {{#if tags}}
+               under
+                {{#foreach tags}}
+                  <a class="post-tag {{slug}}" href="/tag/{{slug}}">{{name}}</a>
+                {{/foreach}}
+              {{/if}}
+            </p>
+          </header>
+          <div class="post-description">
+            <p>
+              {{excerpt words="90"}}&hellip;
+            </p>
+          </div>
+          <p class="post-meta"><a href="{{url}}">Continue Reading </a></p>
+
+        </section>
+        {{/has}}
+      {{/has}}
       {{/foreach}}
     </div>
     {{pagination}}

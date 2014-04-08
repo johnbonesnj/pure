@@ -12,19 +12,14 @@
   {{! Styles'n'Scripts }}
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure.css">
   <!--[if lte IE 8]>
-    <link rel="stylesheet" href="{{asset "css/main-grid-old-ie.css"}}">
+    <link rel="stylesheet" href="{{asset "css/style-old-ie.css"}}">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="{{asset "css/main-grid.css"}}">
+    <link rel="stylesheet" href="{{asset "css/style.css"}}">
   <!--<![endif]-->
-  <!--[if lte IE 8]>
-    <link rel="stylesheet" href="{{asset "css/layouts/blog-old-ie.css"}}">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="{{asset "css/layouts/blog.css"}}">
-  <!--<![endif]-->
-  <!-- <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" /> -->
-  <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" /> -->
+  <link rel="stylesheet" href="{{asset "css/syntax/github.css"}}">
+  <script src="{{asset "js/highlight.pack.js"}}"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   {{ghost_head}}
 </head>
 <body class="{{body_class}}">
